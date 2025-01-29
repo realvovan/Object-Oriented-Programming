@@ -1,3 +1,11 @@
+/*
+    Done by:
+    Student: Hordiienko Volodymyr
+    Group: 123:2
+    Lab 1.1
+    Variant 4
+*/
+
 #include "iostream"
 #include "rectangle.h"
 
