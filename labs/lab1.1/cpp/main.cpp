@@ -7,7 +7,8 @@
 */
 
 #include "iostream"
-#include "rectangle.h"
+#include "rectangle.cpp"
+#include "vector2.cpp"
 
 using std::cin;
 using std::cout;
