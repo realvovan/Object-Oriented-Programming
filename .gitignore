@@ -3,3 +3,4 @@ bin
 .vscode
 *.csproj
 *.exe
+*.js
