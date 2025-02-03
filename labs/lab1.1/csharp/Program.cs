@@ -9,15 +9,20 @@
 namespace Program;
 
 class Program {
+    static float getInputAsFloat(string query) {
+        float f = 0;
+        while(true) {
+            Console.Write(query);
+            if(float.TryParse(Console.ReadLine(), out f)) return f;
+            else Console.WriteLine("Please enter a valid number!");
+        }
+    }
+
     static void Main() {
-        Console.Write("Enter the X coord of the top left vertex: ");
-        float topLeftX = float.Parse(Console.ReadLine());
-        Console.Write("Enter the Y coord of the top left vertex: ");
-        float topLeftY = float.Parse(Console.ReadLine());
-        Console.Write("Enter the width of the rectangle: ");
-        float width = float.Parse(Console.ReadLine());
-        Console.Write("Enter the height of the rectangle: ");
-        float height = float.Parse(Console.ReadLine());
+        float topLeftX = getInputAsFloat("Enter the X coord of the top left vertext: ");
+        float topLeftY = getInputAsFloat("Enter the Y coord of the top left vertex: ");
+        float width = getInputAsFloat("Enter the width of the rectangle: ");
+        float height = getInputAsFloat("Enter the height of the rectangle: ");
 
         Rectangle rect = new(new Vector2(topLeftX,topLeftY),width,height);
 
