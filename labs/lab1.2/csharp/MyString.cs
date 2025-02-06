@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace Program;
 
 // Значення рядка (цифрові символи),
@@ -50,11 +48,6 @@ class MyString {
         }
         return true;
     }
-
-    // IEnumerator IEnumerable.GetEnumerator()
-    // {
-    //     return GetEnumerator();
-    // }
 
     public static MyString operator +(MyString a, MyString b) => new MyString(a._value+b._value);
     public char this[int key] {
