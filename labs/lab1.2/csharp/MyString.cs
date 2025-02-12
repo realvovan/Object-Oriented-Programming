@@ -22,7 +22,9 @@ class MyString {
     }
     public MyString(char[] text) {
         this.Value = new String(text);
-        
+    }
+    public MyString(MyString other) {
+        this._value = other._value;
     }
     ~MyString() {
         Console.WriteLine($"String {this._value} is destroyed");

@@ -16,10 +16,12 @@ class Program {
         var str1 = new MyString(Console.ReadLine());
         Console.WriteLine("Enter anoter numeric string");
         var str2 = new MyString(Console.ReadLine().ToCharArray());
+        var str3 = new MyString(str1);
     
         Console.WriteLine($"Empty string: \"{emptyString.Value}\", length: {emptyString.Lenght()}");
         Console.WriteLine($"String 1: {str1.Value}, lenght {str1.Lenght()}");
         Console.WriteLine($"String 2: {str2.Value}, lenght {str2.Lenght()}");
+        Console.WriteLine($"String 3: {str3.Value}, length {str3.Lenght()}");
         str1.Value = "12345";
         str1.Inverse();
         Console.WriteLine($"Inveresed string 1: {str1.Value}");
