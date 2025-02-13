@@ -11,8 +11,17 @@ export class MyString {
         this.value = text
     }
 
-    constructor(text?:string) {
-        this.Value = text || ""
+    constructor()
+    constructor(text:string)
+    constructor(text:MyString)
+    constructor(text?:string|MyString) {
+        if (typeof text == "string") {
+            this.Value = text
+        } else if (text instanceof MyString) {
+            this.value = text.value
+        } else {
+            this.value = ""
+        }
     }
 
     public Length():number {return this.value.length}

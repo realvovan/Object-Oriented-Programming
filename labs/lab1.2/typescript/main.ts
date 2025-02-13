@@ -10,11 +10,12 @@ import { MyString } from "./myString"
 import { question } from "readline-sync"
 
 let emptyString = new MyString()
-var str1 = new MyString(question("Enter a numeric string: "))
-var str2 = new MyString(question("Enter another numeric string: "))
+let str1 = new MyString(question("Enter a numeric string: "))
+let str2 = new MyString(str1)
+
 console.log(`Empty string: "${emptyString.Value}", length: ${emptyString.Length()}`)
 console.log(`String 1: ${str1.Value}, length: ${str1.Length()}`)
-console.log(`String 1: ${str2.Value}, length: ${str2.Length()}`)
+console.log(`String 2: ${str2.Value}, length: ${str2.Length()}`)
 
 str1.Value = "1234"
 str1.Inverse()
