@@ -16,6 +16,9 @@ class Program {
         s2 -= '#';
         Console.WriteLine($"String s2 after removing '#' symbols: {s2}");
         s1 = s2+s3;
-        Console.WriteLine($"s2 + s3 = {s1}");
+        Console.WriteLine($"s2 + s3 = {s1}, hash code: {s1.GetHashCode()}");
+
+        if(s2 == s3) Console.WriteLine("Strings s2 and s3 are equal");
+        else Console.WriteLine("Strings s2 and s3 are NOT equal");
     }
 }

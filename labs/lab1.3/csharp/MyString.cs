@@ -19,9 +19,17 @@ class MyString {
 
     public int Length() => this.Value.Length;
     public override string ToString() => this.Value;
+    public override bool Equals(object obj) {
+        if(ReferenceEquals(this,obj)) return true;
+        if(obj is MyString other) return this == other;
+        return false;
+    }
+    public override int GetHashCode() => this.Value.GetHashCode();
 
     public static MyString operator +(MyString a, MyString b) => new MyString(a.Value + b.Value);
     public static MyString operator -(MyString a, MyString b) => new MyString(a.Value.Replace(b.Value,""));
     public static MyString operator -(MyString a, string b) => new MyString(a.Value.Replace(b,""));
     public static MyString operator -(MyString a, char b) => new MyString(a.Value.Replace(b,'\0'));
+    public static bool operator ==(MyString a, MyString b) => a.Value == b.Value;
+    public static bool operator !=(MyString a, MyString b) => a.Value != b.Value;
 }
