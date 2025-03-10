@@ -8,29 +8,38 @@ using System.Data;
 
 namespace Homework1;
 
-class BoolArray(bool[] values) {
-    private bool[] array = values;
-    private bool sum = getSum(values);
+class BoolArray {
+    private bool[] array;
+    private int trueCount;
 
-    public int Length {get => this.array.Length;}
+    public BoolArray(bool[] values) {
+        this.array = values;
+        this.updateTrueCount();
+    }
+
+    public int Length => this.array.Length;
     /// <summary>
     /// The logical sum of all elements of the array
     /// </summary>
-    public bool Sum {get => this.sum;}
+    public bool Sum => this.trueCount > 0;
+    /// <summary>
+    /// The number of True elements of the array
+    /// </summary>
+    public int Weight => this.trueCount;
 
     /// <summary>
     /// Appends <i><paramref name="value"/></i> to the end of the array
     /// </summary>
     public void Add(bool value) {
         this.array = [..this.array,value];
-        this.sum = getSum(this.array);
+        this.updateTrueCount();
     }
     /// <summary>
     /// Appends an array of given bool values to the end of the array
     /// </summary>
     public void Add(bool[] values) {
         this.array = [..this.array,..values];
-        this.sum = getSum(this.array);
+        this.updateTrueCount();
     }
     public IEnumerator<bool> GetEnumerator() {
         foreach(bool i in this.array) yield return i;
@@ -52,7 +61,7 @@ class BoolArray(bool[] values) {
         return result;
     }
     public override string ToString()
-        => $"Array [{this.Join(", ")}], length: {this.Length}, logical sum of elements: {this.sum}";
+        => $"Array [{this.Join(", ")}], length: {this.Length}, logical sum of elements: {this.Sum}, number of TRUE elements: {this.trueCount}";
     /// <summary>
     ///     Gets the inversed value of the array or sets a value at a specified index
     /// </summary>
@@ -66,13 +75,17 @@ class BoolArray(bool[] values) {
                 $"Index {key} is out of range for array with length {this.Length}"
             );
             this.array[key] = value ?? throw new NoNullAllowedException("NULL values are not allowed");
+            this.updateTrueCount();
         }
     }
+    public static BoolArray operator +(BoolArray arr,bool other) => new BoolArray([..arr,other]);
+    public static BoolArray operator +(BoolArray arr,bool[] other) => new BoolArray([..arr,..other]);
+    public static BoolArray operator +(BoolArray arr,BoolArray other) => new BoolArray([..arr,..other.array]);
 
-    private static bool getSum(bool[] array) {
-        bool result = false;
-        foreach(bool i in array) result |= i;
-        return result;
+    private void updateTrueCount() {
+        int result = 0;
+        foreach(bool i in this.array) if(i) result++;
+        this.trueCount = result;
     }
 }
 
@@ -87,6 +100,7 @@ static class Program {
         Console.WriteLine($"Invered element at index 0: {arr[0]}");
         Console.WriteLine($"Invered element at index 10: {arr[10]}");
         arr[1] = true;
+        Console.WriteLine(arr.ToString());
         Console.Write("Looping over the array: ");
         foreach(bool i in arr) Console.Write($"{i} ");
         Console.WriteLine();
