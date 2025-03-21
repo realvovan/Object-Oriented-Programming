@@ -6,8 +6,7 @@
 
 class Shape2D {
     const string NOT_ENOUGH_VERTICES = "Not enough vertcies, any shape must have at least 3";
-
-    protected readonly double[][] vertices;
+    readonly double[][] vertices;
 
     public int VertexCount => this.vertices.Length;
     
@@ -20,6 +19,7 @@ class Shape2D {
             this.vertices[i] = [vertices[i,0],vertices[i,1]];
         }
     }
+    public Shape2D(Shape2D other) => this.vertices = other.vertices;
 
     public double[] GetVertex(int index) => index > -1 && index < this.VertexCount ? this.vertices[index] : throw new IndexOutOfRangeException(
         $"Index {index} is out of range for Shape with {this.VertexCount} vertices"
